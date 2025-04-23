@@ -1,0 +1,20 @@
+bmax=1;
+f=100;
+w=2*pi*f;
+t=0:1/6000:1/60;
+Baa=sin(w*t)*(cos(0)+1j*sin(0));
+Ebb=sin(w*t-2*pi/3) * (cos(2*pi/3)+1i*sin(2*pi/3));
+Ecc=sin(w*t+2*pi/3) * (cos(-2*pi/3)+1i*sin(-2*pi/3));
+Enet=Baa+Ebb+Ecc;
+Bloop=(cos(w*t + 0) + 1i*sin(w*t+0));
+circle=1.5*(cos(w*t)+1i*sin(w*t));
+for ii=1: length(t)
+plot(circle,'k');
+hold on;
+plot([0 real(Enet(ii))],[0 imag(Enet(ii))],'r','LineWidth',3);
+plot([0 real(Bloop(ii))],[0 imag(Bloop(ii))],'r','LineWidth',3);
+axis square;
+axis([-2 2 -2 2]);
+drawnow;
+hold off;
+end
